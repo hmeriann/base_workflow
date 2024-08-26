@@ -5,27 +5,11 @@ on:
 jobs:
   build-duckdb:
     name: Build 
-    runs-on: ubuntu-latest
-    steps:
-      - name: create build sqlsmith extension file
-        shell: bash
-        run: |
-          echo "duckdb_extension_load(sqlsmith 
-            GIT_URL ${{ github.head_ref }} 
-            GIT_TAG ${{ github.ref_name }}
-          )" > sqlsmith.cmake
-      - name: upload sqlsmith.cmake
-        uses: actions/upload-artifact@v4
-        with:
-          path: sqlsmith.cmake
-      - uses: actions/checkout@v4
-      - name: build
-        uses: ./.github/actions/base_workflow
-      - uses: actions/upload-artifact@v4
-        with:
-          name: duckdb
-          path: build/debug/duckdb
-
+    uses: hmeriann/.github/workflows/base_workflow.yml@main
+    with:
+      git_url: ${{ github.actor }}
+      git_tag: ${{ github.head_ref }}
+      
   fuzzer:
     name: Fuzzer
     needs:
