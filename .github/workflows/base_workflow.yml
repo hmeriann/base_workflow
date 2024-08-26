@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           echo "duckdb_extension_load(sqlsmith 
-            GIT_URL ${{ inputs.git_url }} 
+            GIT_URL https://github.com/${{ inputs.git_url }}/duckdb_sqlsmith 
             GIT_TAG ${{ inputs.git_tag }}
           )" > sqlsmith.cmake
 
