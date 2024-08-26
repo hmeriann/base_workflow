@@ -7,6 +7,17 @@ jobs:
     name: Build 
     runs-on: ubuntu-latest
     steps:
+      - name: create build sqlsmith extension file
+        shell: bash
+        run: |
+          echo "duckdb_extension_load(sqlsmith 
+            GIT_URL ${{ github.head_ref }} 
+            GIT_TAG ${{ github.ref_name }}
+          )" > sqlsmith.cmake
+      - name: upload sqlsmith.cmake
+        uses: actions/upload-artifact@v4
+        with:
+          path: sqlsmith.cmake
       - uses: actions/checkout@v4
       - name: build
         uses: ./.github/actions/base_workflow
