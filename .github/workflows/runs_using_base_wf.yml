@@ -1,4 +1,4 @@
-name: This Workflow Uses base_workflow to Run
+name: This Workflow Uses base_workflow From the Same Repo
 on:
   workflow_dispatch:
   pull_request:
