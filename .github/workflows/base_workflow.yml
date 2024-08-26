@@ -5,13 +5,9 @@ on:
       git_url: 
         required: true
         type: string
-      
-      # git_url: 
-      #   required: true
-      #   type: string
-      # git_tag:
-      #   required: true
-      #   type: string
+      git_tag:
+        required: true
+        type: string
 
 jobs:
   build-duckdb:
@@ -42,9 +38,9 @@ jobs:
         shell: bash
         run: |
           echo "duckdb_extension_load(sqlsmith 
-            GIT_URL ${{ inputs.git_url }}
-            # GIT_URL https://github.com/${{ inputs.git_url }}/duckdb_sqlsmith 
-            # GIT_TAG ${{ inputs.git_tag }}
+            # GIT_URL ${{ inputs.git_url }}
+            GIT_URL https://github.com/${{ inputs.git_url }}/duckdb_sqlsmith 
+            GIT_TAG ${{ inputs.git_tag }}
           )" > sqlsmith.cmake
 
       - name: Build
