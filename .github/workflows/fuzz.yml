@@ -10,6 +10,10 @@ on:
       timeout-minutes:
         required: true
         type: number
+        default: 120
+      dry:
+        required: true
+        type: string
 
 jobs:
   fuzzer:
@@ -46,7 +50,7 @@ jobs:
           while [[ $(date -u +%s) -le $endtime ]]
           do
               echo "Time Now: `date +%H:%M:%S`"
-              python3 scripts/run_fuzzer.py --no_checks --${{ inputs.fuzzer }} --${{ inputs.data }} --max_queries=1 --shell=../duckdb
+              python3 scripts/run_fuzzer.py ${{ inputs.dry }} --no_checks --${{ inputs.fuzzer }} --${{ inputs.data }} --max_queries=1 --shell=../duckdb
           done
 
       - name: Upload fuzz_clogs
