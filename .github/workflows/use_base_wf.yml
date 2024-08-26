@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build
-        uses: hmeriann/base_workflow@main
+        uses: hmeriann/base_workflow/base_workflow@main
       - uses: actions/upload-artifact@v4
         with:
           name: duckdb
