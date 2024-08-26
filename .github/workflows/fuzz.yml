@@ -7,12 +7,15 @@ on:
       data:
         required: true
         type: string
+      timeout-minutes:
+        required: true
+        type: number
 
 jobs:
   fuzzer:
     name: Fuzzer
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: ${{ inputs.timeout-minutes }}
     strategy:
       fail-fast: false
       matrix:
