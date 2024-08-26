@@ -45,7 +45,8 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          echo cat sqlsmith.cmake
+          EXTENSION_CONFIGS="sqlsmith.cmake" make debug
+          # echo cat sqlsmith.cmake
 
       - uses: actions/upload-artifact@v4
         with:
