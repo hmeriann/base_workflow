@@ -7,8 +7,10 @@ jobs:
     name: Build 
     uses: ./.github/workflows/base_workflow.yml
     with:
-      git_url: ${{ github.actor }}
-      git_tag: ${{ github.head_ref }}
+      git_url: duckdb
+      git_tag: main
+      # git_url: ${{ github.actor }}
+      # git_tag: ${{ github.head_ref }}
       
   fuzzer:
     name: Fuzzer
