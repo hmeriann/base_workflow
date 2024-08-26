@@ -8,8 +8,8 @@ jobs:
     name: Build 
     uses: ./.github/workflows/base_workflow.yml
     with:
-      git_url: ${{ github.ref }}
-      # git_url: ${{ github.actor }}
+      git_url: ${{ github.actor }}
+      git_tag: ${{ github.ref_name }}
       # git_tag: ${{ github.head_ref }}
       
   fuzzer:
