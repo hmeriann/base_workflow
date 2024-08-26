@@ -34,7 +34,7 @@ jobs:
           echo "duckdb_extension_load(sqlsmith 
             GIT_URL https://github.com/${{ github.actor }}/base_workflow
             GIT_TAG ${{ github.sha }}
-            # GIT_TAG ${{ github.head_ref }}
+            # GIT_TAG ${{ github.base_ref }}
           )" > sqlsmith.cmake
 
       - name: Build
