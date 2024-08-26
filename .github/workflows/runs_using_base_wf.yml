@@ -42,7 +42,7 @@ jobs:
         uses: ./.github/workflows/fuzz.yml
         with:
           fuzzer: ${{ matrix.fuzzer }}
-          data: ${{ matrix.data }}\
+          data: ${{ matrix.data }}
       
       - name: Upload fuzz_clogs
         if: always()
