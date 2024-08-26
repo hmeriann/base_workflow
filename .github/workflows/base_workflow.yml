@@ -33,9 +33,6 @@ jobs:
         with:
           repository: hmeriann/duckdb
           fetch-depth: 0
-      - uses: actions/download-artifact@v4
-        with:
-          name: sqlsmith.cmake
 
       - name: create build sqlsmith extension file
         shell: bash
