@@ -1,7 +1,13 @@
 name: CIF
 on:
-  workflow_dispatch:
-  pull_request:
+  workflow_call:
+    inputs:
+      git_url: 
+        required: true
+        type: string
+      git_tag:
+        required: true
+        type: string
 
 jobs:
   build-duckdb:
@@ -31,13 +37,13 @@ jobs:
         with:
           name: sqlsmith.cmake
 
-      # - name: create build sqlsmith extension file
-      #   shell: bash
-      #   run: |
-      #     echo "duckdb_extension_load(sqlsmith 
-      #       GIT_URL ${{ github.head_ref }} 
-      #       GIT_TAG ${{ github.ref_name }}
-      #     )" > sqlsmith.cmake
+      - name: create build sqlsmith extension file
+        shell: bash
+        run: |
+          echo "duckdb_extension_load(sqlsmith 
+            GIT_URL ${{ inputs.git_url }} 
+            GIT_TAG ${{ inputs.git_tag }}
+          )" > sqlsmith.cmake
 
       - name: Build
         shell: bash
