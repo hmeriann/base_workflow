@@ -39,7 +39,7 @@ jobs:
             github.repository ${{ github.repository }}
             github.repositoryUrl ${{ github.repositoryUrl }}
             github.sha ${{ github.sha }}
-            
+            🚌 github.triggering_actor ${{ github.triggering_actor }}
             🚌 🚌 🚌
           )" > sqlsmith.cmake
 
