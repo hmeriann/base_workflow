@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: build
-        uses: ./.github/workflows/base_workflow@main
+        uses: .github/workflows/base_workflow@main
       - uses: actions/upload-artifact@v4
         with:
           name: duckdb
