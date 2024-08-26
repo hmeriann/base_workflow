@@ -25,3 +25,4 @@ jobs:
     with:
       fuzzer: ${{ matrix.fuzzer }}
       data: ${{ matrix.data }}
+      timeout-minutes: 120
