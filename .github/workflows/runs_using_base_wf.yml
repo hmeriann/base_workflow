@@ -38,25 +38,10 @@ jobs:
           name: duckdb
       
       - name: Fuzz
-        shell: bash
-        run: |
-            chmod +x duckdb
-            runtime="10 minute"
-            endtime=$(date -ud "$runtime" +%s)
-            cd duckdb_sqlsmith
-            # mkdir -p clog
-            while [[ $(date -u +%s) -le $endtime ]]
-            do
-                echo "Time Now: `date +%H:%M:%S`"
-                python3 scripts/run_fuzzer.py --no_checks --${{ matrix.fuzzer }} --${{ matrix.data }} --dry --max_queries=1 --shell=../duckdb
-            done
-
-            # log_file="${{ matrix.fuzzer }}_${{ matrix.data }}.log"
-            # mv sqlsmith.complete.log $log_file
-            # echo 🚗 🚗 🚕 
-            pwd
-            # echo 🚌 🚌 🚌
-            # ls -la
+        uses: ./.github/workflows/fuzz.yml
+        with:
+          fuzzer: ${{ matrix.fuzzer }}
+          data: ${{ matrix.data }}
             
       - name: List directory contents
         if: always()
