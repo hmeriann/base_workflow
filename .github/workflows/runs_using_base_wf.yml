@@ -41,12 +41,8 @@ jobs:
         uses: ./.github/workflows/fuzz.yml
         with:
           fuzzer: ${{ matrix.fuzzer }}
-          data: ${{ matrix.data }}
-            
-      - name: List directory contents
-        if: always()
-        run: ls -la
-
+          data: ${{ matrix.data }}\
+      
       - name: Upload fuzz_clogs
         if: always()
         uses: actions/upload-artifact@v4
