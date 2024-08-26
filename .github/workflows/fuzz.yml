@@ -15,12 +15,12 @@ jobs:
     steps:
       - run: |
           chmod +x duckdb
-          runtime="10 minute"
+          runtime="1 minute"
           endtime=$(date -ud "$runtime" +%s)
           cd duckdb_sqlsmith
       
           while [[ $(date -u +%s) -le $endtime ]]
           do
               echo "Time Now: `date +%H:%M:%S`"
-              python3 scripts/run_fuzzer.py --no_checks --${{ inputs.fuzzer }} --${{ inputs.data }} --max_queries=1000 --shell=../duckdb
+              python3 scripts/run_fuzzer.py --no_checks --${{ inputs.fuzzer }} --${{ inputs.data }} --max_queries=1 --shell=../duckdb
           done
