@@ -1,4 +1,4 @@
-name: CIF
+name: Build
 on:
   workflow_call:
     inputs:
