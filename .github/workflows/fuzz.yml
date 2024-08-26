@@ -1,13 +1,26 @@
-- name: Fuzz
-  shell: bash
-  run: |
-      chmod +x duckdb
-      runtime="10 minute"
-      endtime=$(date -ud "$runtime" +%s)
-      cd duckdb_sqlsmith
-  
-      while [[ $(date -u +%s) -le $endtime ]]
-      do
-          echo "Time Now: `date +%H:%M:%S`"
-          python3 scripts/run_fuzzer.py --no_checks --${{ matrix.fuzzer }} --${{ matrix.data }} --max_queries=1000 --shell=../duckdb
-      done
+on:
+  workflow_call:
+    inputs:
+      fuzzer: 
+        required: true
+        type: string
+      data:
+        required: true
+        type: string
+
+jobs:
+  fuzz:
+    name: Fuzz
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          chmod +x duckdb
+          runtime="10 minute"
+          endtime=$(date -ud "$runtime" +%s)
+          cd duckdb_sqlsmith
+      
+          while [[ $(date -u +%s) -le $endtime ]]
+          do
+              echo "Time Now: `date +%H:%M:%S`"
+              python3 scripts/run_fuzzer.py --no_checks --${{ inputs.fuzzer }} --${{ inputs.data }} --max_queries=1000 --shell=../duckdb
+          done
