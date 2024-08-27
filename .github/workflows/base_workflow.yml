@@ -34,6 +34,12 @@ jobs:
           repository: hmeriann/duckdb
           fetch-depth: 0
 
+      - name: Setup Ccache
+        uses: hendrikmuhs/ccache-action@main
+  
+      - id: find-hash
+        run: echo "hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
       - name: create build sqlsmith extension file
         shell: bash
         run: |
