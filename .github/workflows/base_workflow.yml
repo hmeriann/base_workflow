@@ -9,12 +9,14 @@ on:
         required: true
         type: string
     outputs:
-      value: ${{ jobs.build-duckdb.outputs.hash }}
+      value: ${{ jobs.build-duckdb.outputs.duckdb-hash }}
 jobs:
   build-duckdb:
     name: Build 
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    outputs:
+      duckdb-hash: ${{ steps.find-hash.outputs.hash }}
     env:
       # BUILD_ICU: 1
       # BUILD_JSON: 1
