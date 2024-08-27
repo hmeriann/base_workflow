@@ -9,7 +9,7 @@ on:
         required: true
         type: string
     outputs:
-      value: ${{ jobs.build-duckdb.outputs.duckdb-hash }}
+      value: ${{ build-duckdb.outputs.duckdb-hash }}
 jobs:
   build-duckdb:
     name: Build 
