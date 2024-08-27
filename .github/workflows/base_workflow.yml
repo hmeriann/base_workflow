@@ -8,7 +8,8 @@ on:
       git_tag:
         required: true
         type: string
-
+    outputs:
+      value: ${{ build-duckdb.find-hash.outputs.hash }}
 jobs:
   build-duckdb:
     name: Build 
