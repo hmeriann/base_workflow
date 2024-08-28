@@ -4,36 +4,36 @@ on:
   pull_request:
 
 jobs:
-  build-duckdb:
-    name: Build 
-    uses: ./.github/workflows/base_workflow.yml
-    with:
-      git_url: ${{ github.actor }}
-      git_tag: ${{ github.ref_name }}
-      # git_tag: ${{ github.head_ref }}
+  # build-duckdb:
+  #   name: Build 
+  #   uses: ./.github/workflows/base_workflow.yml
+  #   with:
+  #     git_url: ${{ github.actor }}
+  #     git_tag: ${{ github.ref_name }}
+  #     # git_tag: ${{ github.head_ref }}
 
   vars:
     runs-on: ubuntu-latest
-    needs:
-      - build-duckdb
+    # needs:
+    #   - build-duckdb
     steps:
       - name: print vars
         run: |
           echo "ref_name ${{ github.ref_name }}"
           echo "repository ${{ github.repository }}"
       
-  fuzzer:
-    name: Fuzzer
-    needs:
-    - build-duckdb
-    strategy:
-      fail-fast: false
-      matrix:
-        fuzzer: [duckfuzz, sqlsmith]
-        data: [alltypes]
-    uses: ./.github/workflows/fuzz.yml
-    with:
-      fuzzer: ${{ matrix.fuzzer }}
-      data: ${{ matrix.data }}
-      timeout-minutes: 120
-      dry: --dry
+  # fuzzer:
+  #   name: Fuzzer
+  #   needs:
+  #   - build-duckdb
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       fuzzer: [duckfuzz, sqlsmith]
+  #       data: [alltypes]
+  #   uses: ./.github/workflows/fuzz.yml
+  #   with:
+  #     fuzzer: ${{ matrix.fuzzer }}
+  #     data: ${{ matrix.data }}
+  #     timeout-minutes: 120
+  #     dry: --dry
