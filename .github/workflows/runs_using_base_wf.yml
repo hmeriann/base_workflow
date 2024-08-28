@@ -11,6 +11,16 @@ jobs:
       git_url: ${{ github.actor }}
       git_tag: ${{ github.ref_name }}
       # git_tag: ${{ github.head_ref }}
+
+  vars:
+    runs-on: ubuntu-latest
+    needs:
+      - build-duckdb
+    steps:
+      - name: print vars
+        run: |
+          echo "ref_name ${{ github.ref_name }}"
+          echo "repository ${{ github.repository }}"
       
   fuzzer:
     name: Fuzzer
