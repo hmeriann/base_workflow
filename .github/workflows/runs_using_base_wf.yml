@@ -8,7 +8,8 @@ jobs:
     name: Build 
     uses: ./.github/workflows/base_workflow.yml
     with:
-      git_url: ${{ github.repository }}
+    # in my copy it should be a '${{github.actor}}/duckdb_sqlsmith' since I refer to my copy of duckdb_sqlsmith
+      git_url: ${{ github.actor }}
       git_tag: ${{ github.ref_name }}
 
   # vars:
